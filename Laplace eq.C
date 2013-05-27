@@ -22,13 +22,13 @@ void initializa_V()
 
 void update_V()
 {
+    delta_V = 0;
     for (int i = 1; i < GridCheck-1; i++)
     {
         for (int j = 1; j < GridCheck-1; j++)
         {
             temp_potential[i][j] = (potential[i-1][j]+potential[i+1][j]+potential[i][j-1]+potential[i][j+1]) / 4;
             delta_V += sqrt((potential[i][j]-temp_potential[i][j]) * (potential[i][j]-temp_potential[i][j]));
-    cout<<delta_V<<endl;
         }
     }
     for (int i = 1; i < GridCheck-1; i++)
