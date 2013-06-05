@@ -8,7 +8,7 @@ const double r_stepsize = 1;
 const int StringLength = 1000;
 const double initPosition = 0.2;
 const double k = 0.001;
-const int TimeStep = 975;
+const int TimeStep = 90;
 double y_Amp[StringLength + 1][TimeStep];
 
 void initString()

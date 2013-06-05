@@ -36,12 +36,12 @@ void propagate(int Times)
 {
 	y_Amp[0][Times] = 0;
 	y_Amp[StringLength][Times] = 0;
-	y_Amp[1][Times] = 2 * (1 - r_square - 3 * epsilon * r_square * Msquare - bxDelta_T2) * y_Amp[1][Times - 1] - (1 - bxDelta_T2) * y_Amp[1][Times - 2] + r_square * (1 + 4 * epsilon * Msquare) * y_Amp[2][Times - 1] - epsilon * r_square * Msquare * (y_Amp[3][Times - 1] - y_Amp[1][Times - 1]);
+	y_Amp[1][Times] = 2 * (1 - r_square - 3 * epsilon * r_square * Msquare - bxDelta_T2/2) * y_Amp[1][Times - 1] - (1 - bxDelta_T2) * y_Amp[1][Times - 2] + r_square * (1 + 4 * epsilon * Msquare) * y_Amp[2][Times - 1] - epsilon * r_square * Msquare * (y_Amp[3][Times - 1] - y_Amp[1][Times - 1]);
 	for (int i = 2; i < StringLength - 1; ++i)
 	{
-		y_Amp[i][Times] = 2 * (1 - r_square - 3 * epsilon * r_square * Msquare - bxDelta_T2) * y_Amp[i][Times - 1] - (1 - bxDelta_T2) * y_Amp[i][Times - 2] + r_square * (1 + 4 * epsilon * Msquare) * (y_Amp[i + 1][Times - 1] + y_Amp[i - 1][Times - 1]) - epsilon * r_square * Msquare * (y_Amp[i + 2][Times - 1] + y_Amp[i - 2][Times - 1]);
+		y_Amp[i][Times] = 2 * (1 - r_square - 3 * epsilon * r_square * Msquare - bxDelta_T2/2) * y_Amp[i][Times - 1] - (1 - bxDelta_T2) * y_Amp[i][Times - 2] + r_square * (1 + 4 * epsilon * Msquare) * (y_Amp[i + 1][Times - 1] + y_Amp[i - 1][Times - 1]) - epsilon * r_square * Msquare * (y_Amp[i + 2][Times - 1] + y_Amp[i - 2][Times - 1]);
 	}
-	y_Amp[StringLength - 1][Times] = 2 * (1 - r_square - 3 * epsilon * r_square * Msquare - bxDelta_T2) * y_Amp[StringLength - 1][Times - 1] - (1 - bxDelta_T2) * y_Amp[StringLength - 1][Times - 2] + r_square * (1 + 4 * epsilon * Msquare) * y_Amp[StringLength - 2][Times - 1] - epsilon * r_square * Msquare * (y_Amp[StringLength - 3][Times - 1] - y_Amp[StringLength - 1][Times - 1]);
+	y_Amp[StringLength - 1][Times] = 2 * (1 - r_square - 3 * epsilon * r_square * Msquare - bxDelta_T2/2) * y_Amp[StringLength - 1][Times - 1] - (1 - bxDelta_T2) * y_Amp[StringLength - 1][Times - 2] + r_square * (1 + 4 * epsilon * Msquare) * y_Amp[StringLength - 2][Times - 1] - epsilon * r_square * Msquare * (y_Amp[StringLength - 3][Times - 1] - y_Amp[StringLength - 1][Times - 1]);
 
 }
 
@@ -61,7 +61,7 @@ int main()
 	myfile.open ("PianoC7.dat");
 	for(int i = 0; i < TimeStep; i++)
 	{
-		count = i / 577.6;
+		count = i * 0.152;
 		// numIwant = sqrt((data[i] * data[i] + data[TimeStep - i - 1] * data[TimeStep - i - 1]) / 8192);
 		myfile <<count<< "    " << data[i] <<endl;
 	}
